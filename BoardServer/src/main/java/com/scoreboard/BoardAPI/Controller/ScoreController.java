@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -23,6 +24,7 @@ import com.scoreboard.BoardAPI.entity.Score;
 
 @RestController
 @RequestMapping("/jpa/users")
+@CrossOrigin(origins = {"http://localhost:4200","http://localhost:5000"})
 public class ScoreController {
 	@Autowired
 	private ScoreService scoreservice;
@@ -31,40 +33,41 @@ public class ScoreController {
 	private ScoreRepository scorerepository;
 	
 	@GetMapping("/scores")
-	   public List<Score> getallscores(){
+	   public ResponseEntity getallscores() throws Exception{
 			return scoreservice.getallscores();
 		
 	}
 	
 	@GetMapping("/leftplayers")
-	public List<String> getleftplayers(){
+	public ResponseEntity getleftplayers() throws Exception{
 		return scoreservice.getleftplayers();
 	}
 	
 	
 	@PutMapping("/saveauser")
-	public void saveplayer(@RequestBody Score score) {
+	public void saveplayer(@RequestBody Score score) throws Exception {
 		scoreservice.saveplayer(score);
 	}
 
 	@GetMapping("/getplayer/{name}")
-	public Score getplayer(@PathVariable String name) {
+	public ResponseEntity getplayer(@PathVariable String name) throws Exception{
 		return scoreservice.getplayer(name);
 	}
 
 	@GetMapping("/check/{id}")
-	public boolean isout(@PathVariable int id) {
+	public boolean isout(@PathVariable long id) {
 		return scoreservice.isout(id);
 	}
 	
+	
 	@GetMapping("/all")
-	public Map<String,List<Object>> chartdetails(){
+	public ResponseEntity chartdetails() throws Exception{
 		return scoreservice.chartdetails();
 	}
 	
 	
 	@GetMapping("/battingdetails")
-	public List<Score> battingscorecard(){
+	public ResponseEntity battingscorecard() throws Exception{
 		return scoreservice.bettingscorecard();
 	}
 	

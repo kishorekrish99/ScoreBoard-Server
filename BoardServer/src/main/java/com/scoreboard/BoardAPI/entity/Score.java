@@ -4,7 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 @Entity
+@Table(name="score")
 public class Score {
 	@Id
 	@GeneratedValue
@@ -92,16 +94,16 @@ public class Score {
 		this.total = total;
 	}
 
-	public Score(Long id, String name, String status, Integer runs, Integer four, Integer six, Double sr,
+	public Score(long i, String name, String status, Integer runs, Integer four, Integer six, Double j,
 			Integer total) {
 		super();
-		this.id = id;
+		this.id = i;
 		this.name = name;
 		this.status = status;
 		this.runs = runs;
 		this.four = four;
 		this.six = six;
-		this.sr = sr;
+		this.sr = j;
 		this.total = total;
 	}
 	

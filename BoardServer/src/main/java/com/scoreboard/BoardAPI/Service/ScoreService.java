@@ -3,23 +3,25 @@ package com.scoreboard.BoardAPI.Service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.http.ResponseEntity;
+
 import com.scoreboard.BoardAPI.entity.Score;
 
 public interface ScoreService {
 
-	public List<Score> getallscores();
+	public ResponseEntity getallscores() throws Exception;
 
-	public List<String> getleftplayers();
+	public ResponseEntity getleftplayers() throws Exception;
 
-	public void saveplayer(Score score);
+	public void saveplayer(Score score) throws Exception;
 
-	public Score getplayer(String name);
+	public ResponseEntity getplayer(String name) throws Exception;
 
-	public boolean isout(int id);
+	public boolean isout(long id);
 
-	public Map<String, List<Object>> chartdetails();
+	public ResponseEntity chartdetails() throws Exception;
 
-	public List<Score> bettingscorecard();
+	public ResponseEntity bettingscorecard() throws Exception;
 
 	
 

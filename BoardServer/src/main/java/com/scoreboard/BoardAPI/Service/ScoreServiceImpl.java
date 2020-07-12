@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.scoreboard.BoardAPI.DAO.ScoreRepository;
@@ -17,19 +19,33 @@ public class ScoreServiceImpl implements ScoreService {
 	private ScoreRepository scorerepository;
 	
 	@Override
-	public List<Score> getallscores() {
-		
-		List<Score> players = new ArrayList();
-		
+	public ResponseEntity getallscores() throws Exception {
+				
+        List<Score> players = new ArrayList();
+	
 		String s= "playing";
 		
-		List<Score> allplayers=scorerepository.findAll();
+		
+		List<Score> allplayers ;
+		
+		try {
+			
+		    allplayers=scorerepository.findAll();
+		    
+		}catch(Exception e) {
+			
+			throw e;
+			
+		}
+		
+		
+		if(allplayers.size()==0) {
+			  return new ResponseEntity(HttpStatus.NOT_FOUND);
+		}
+		
 		
 	    for(Score score: allplayers){
-	    	
-
-	    	
-	    	
+	    		    	
 	       if(score.getStatus().equals("playing")) {
 	    	   players.add(score);
 	    	   System.out.println(score.getStatus());
@@ -37,55 +53,85 @@ public class ScoreServiceImpl implements ScoreService {
 	    	
 	    }
 	    
-	    return players;
+	    if(players.size()==0) {
+	    	return new ResponseEntity(HttpStatus.NOT_FOUND);
+	    }
+	    
+	    return new ResponseEntity(players, HttpStatus.OK);
 	    
 	}
 
 	@Override
-	public List<String> getleftplayers() {
+	public ResponseEntity getleftplayers() throws Exception {
 
 	    List<String> allnames = new ArrayList<String>();
 	    
-	    List<Score> allplayers = scorerepository.findAll();
+	    List<Score> allplayers;
 	    
-	    System.out.println(allplayers);
+	    try {
+	       allplayers = scorerepository.findAll();
+	    }catch(Exception e) {
+	    	throw e;
+	    }
+	    
+
 	    
 	    for(Score score: allplayers) {
 	    	if(score.getStatus().equals("not out")) {
 	    		allnames.add(score.getName());
 	    	}
 	    }
+	    
+	    if(allnames.size()==0) return new ResponseEntity(HttpStatus.NOT_FOUND);
 		
-		return allnames;
+		return new ResponseEntity(allnames,HttpStatus.OK);
 	}
 
 	@Override
-	public void saveplayer(Score score) {
-		scorerepository.save(score);
+	public void saveplayer(Score score) throws Exception{
+		System.out.println(score);
+		try {
+	        scorerepository.save(score);
+		}catch(Exception e) {
+			throw e;
+		}
 		
 	}
+	
+	
 
 	@Override
-	public Score getplayer(String name) {
+	public ResponseEntity getplayer(String name) throws Exception{
 
-List<Score> x = scorerepository.findAll();
+
+       List<Score> x;
 		
-		
-		
+		try {
+		  x = scorerepository.findAll();
+		}catch(Exception e) {
+			throw e;
+		}
+	
+		Integer flag=0;
 		for(Score score: x) {
 			if(score.getName().equals(name)){
 				score.setStatus("playing");
-				scorerepository.save(score);
-				return score;
+				flag=1;
+				try {
+				    scorerepository.save(score);
+				}catch(Exception e) {throw e;}
+				return new ResponseEntity(score, HttpStatus.OK);
 			}
 		}
+		
+		if(flag==0) {return new ResponseEntity(HttpStatus.NOT_FOUND);}
 		
 		return null;
 		
 	}
 
 	@Override
-	public boolean isout(int id) {
+	public boolean isout(long id) {
 		Score score = scorerepository.findById(id).get();
 		if(score.getStatus().equals("out"))
 			return true;
@@ -94,16 +140,29 @@ List<Score> x = scorerepository.findAll();
 	}
 
 	@Override
-	public Map<String, List<Object>> chartdetails() {
-		Map<String, List<Object>> map = new HashMap<>();
+	public ResponseEntity chartdetails() throws Exception{
+
+       Map<String, List<Object>> map = new HashMap<>();
+		
+		
 		
 		List<Object> m,n,o,p,q = new ArrayList();
 		
-		m=scorerepository.findnames();
+		try {
+		
+		m = scorerepository.findnames();
 		n=scorerepository.findruns();
 		o=scorerepository.findfours();
 		p=scorerepository.findsix();
 		q=scorerepository.findtotal();
+		
+		}catch(Exception e) {throw e;}		
+		
+		
+		if(m.size()==0) {
+			return new ResponseEntity(HttpStatus.NOT_FOUND);
+		}
+		
 		
 		map.put("names",m);
 		map.put("runs", n);
@@ -111,14 +170,17 @@ List<Score> x = scorerepository.findAll();
 		map.put("six",p);
 		map.put("total",q);
 		
-		return map;
+		return new ResponseEntity(map,HttpStatus.OK);
 	}
 
 	@Override
-	public List<Score> bettingscorecard() {
-		return scorerepository.findAll();
+	public ResponseEntity bettingscorecard() throws Exception{
+//		
+
+		return new ResponseEntity(scorerepository.findAll(),HttpStatus.OK);
 				
 	}
+	
 	
 	
 	

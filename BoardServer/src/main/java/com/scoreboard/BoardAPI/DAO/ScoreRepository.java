@@ -11,7 +11,7 @@ import com.scoreboard.BoardAPI.entity.Score;
 
 @CrossOrigin("http://localhost:4200")
 @RepositoryRestResource(collectionResourceRel="score",path="score")
-public interface ScoreRepository extends JpaRepository<Score, Integer> {
+public interface ScoreRepository extends JpaRepository<Score, Long> {
 	public static final String findnames = "SELECT name FROM score";
 	public static final String runs = "SELECT runs FROM score";
 	public static final String fours = "SELECT four FROM score";
