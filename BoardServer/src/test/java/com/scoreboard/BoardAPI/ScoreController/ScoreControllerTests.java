@@ -61,7 +61,7 @@ class ScoreControllerTests {
 		
 		Mockito.when(scoreservice.getleftplayers()).thenReturn(getleftplayers);
 		
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/jpa/users/leftplayers").contentType("application/json");
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/user/leftplayers").contentType("application/json");
 				
         MvcResult result = mockmvc.perform(requestBuilder).andExpect(status().isOk()).andReturn();
 		

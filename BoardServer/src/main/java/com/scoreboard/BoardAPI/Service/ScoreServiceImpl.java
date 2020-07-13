@@ -93,7 +93,7 @@ public class ScoreServiceImpl implements ScoreService {
 		try {
 	        scorerepository.save(score);
 		}catch(Exception e) {
-			throw e;
+			
 		}
 		
 	}

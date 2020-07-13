@@ -86,7 +86,7 @@ public class ScoreController {
 			map.put("runs", n);
 			map.put("fours",o);
 			map.put("six",p);
-			map.put("total",q); 
+			map.put("total",q);  
 		   Thread.sleep(2000);
 		   r.add(updatedscore);
 		   r.add(map);

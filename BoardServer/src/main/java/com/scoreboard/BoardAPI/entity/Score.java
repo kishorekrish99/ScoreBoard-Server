@@ -10,7 +10,7 @@ import javax.persistence.Table;
 public class Score {
 	@Id
 	@GeneratedValue
-    private Long id;
+    private Integer id;
 	
 	private String name;
 	private String status;
@@ -30,11 +30,13 @@ public class Score {
 				+ ", six=" + six + ", sr=" + sr + ", total=" + total + "]";
 	}
 
-	public Long getId() {
+	
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -94,7 +96,7 @@ public class Score {
 		this.total = total;
 	}
 
-	public Score(long i, String name, String status, Integer runs, Integer four, Integer six, Double j,
+	public Score(int i, String name, String status, Integer runs, Integer four, Integer six, Double j,
 			Integer total) {
 		super();
 		this.id = i;
