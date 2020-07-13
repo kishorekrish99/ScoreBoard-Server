@@ -66,7 +66,7 @@ class MatchServiceTest {
 		teamslist.add(teamtesttwo);
 		
 		
-		matchs match = new matchs(101,1,false,5,teamslist);
+		matchs match = new matchs("teamA",5,teamslist);
 		
 		MatchesToTeams match2teams = new MatchesToTeams(match);
 		
@@ -104,7 +104,7 @@ class MatchServiceTest {
 		
 		List<matchs> matcheslist = new ArrayList();
 		
-		matchs match = new matchs(101,1,false,5,teamslist);
+		matchs match = new matchs("teamA",5,teamslist);
 		
 		matcheslist.add(match);
 		

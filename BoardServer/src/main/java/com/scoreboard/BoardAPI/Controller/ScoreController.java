@@ -23,14 +23,14 @@ import com.scoreboard.BoardAPI.Service.ScoreService;
 import com.scoreboard.BoardAPI.entity.Score;
 
 @RestController
-@RequestMapping("/jpa/users")
-@CrossOrigin(origins = {"http://localhost:4200","http://localhost:5000"})
+@RequestMapping("/user")
+@CrossOrigin(origins = {"http://localhost:4200"})
 public class ScoreController {
 	@Autowired
 	private ScoreService scoreservice;
-	
+	 
 	@Autowired
-	private ScoreRepository scorerepository;
+	private ScoreRepository scorerepository; 
 	
 	@GetMapping("/scores")
 	   public ResponseEntity getallscores() throws Exception{
@@ -43,7 +43,7 @@ public class ScoreController {
 		return scoreservice.getleftplayers();
 	}
 	
-	
+	 
 	@PutMapping("/saveauser")
 	public void saveplayer(@RequestBody Score score) throws Exception {
 		scoreservice.saveplayer(score);
@@ -55,7 +55,7 @@ public class ScoreController {
 	}
 
 	@GetMapping("/check/{id}")
-	public boolean isout(@PathVariable long id) {
+	public boolean isout(@PathVariable int id) {
 		return scoreservice.isout(id);
 	}
 	

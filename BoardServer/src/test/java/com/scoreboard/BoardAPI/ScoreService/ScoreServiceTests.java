@@ -44,10 +44,10 @@ class ScoreServiceTests {
 	private ScoreRepository repository;
     
 	private List<String> allnames = new ArrayList();
+	 
 	
-	
-	private ResponseEntity expected;
-    
+	private ResponseEntity expected; 
+     
 	@Test
 	public void getallscores_withsomeplayers() throws Exception{
 	     
@@ -162,9 +162,9 @@ class ScoreServiceTests {
     	  
     	  Optional<Score> myscoreone = Optional.ofNullable(scoreone);
     	  
-    	Mockito.when(repository.findById((long) 1001)).thenReturn(myscore);
+    	Mockito.when(repository.findById((int) 1001)).thenReturn(myscore);
     	
-    	Mockito.when(repository.findById((long) 1002)).thenReturn(myscoreone);
+    	Mockito.when(repository.findById((int) 1002)).thenReturn(myscoreone);
     	
     	assertEquals(false, scoreservice.isout(1002));
     	
@@ -230,7 +230,7 @@ class ScoreServiceTests {
 		Map<String, List<Object>> map = new HashMap<>();
 
         expected =new ResponseEntity(HttpStatus.NOT_FOUND);
-        
+         
         assertEquals(expected, scoreservice.chartdetails());
 		
 		

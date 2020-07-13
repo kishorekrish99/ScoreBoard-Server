@@ -17,7 +17,7 @@ public interface ScoreService {
 
 	public ResponseEntity getplayer(String name) throws Exception;
 
-	public boolean isout(long id);
+	public boolean isout(int id);
 
 	public ResponseEntity chartdetails() throws Exception;
 

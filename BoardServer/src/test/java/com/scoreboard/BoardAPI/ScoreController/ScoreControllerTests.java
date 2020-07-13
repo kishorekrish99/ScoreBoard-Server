@@ -1,8 +1,7 @@
 package com.scoreboard.BoardAPI.ScoreController;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.awt.PageAttributes.MediaType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +11,6 @@ import org.mockito.Mockito;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,18 +19,11 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
-import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.web.bind.annotation.GetMapping;
-
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.scoreboard.BoardAPI.Controller.ScoreController;
 import com.scoreboard.BoardAPI.DAO.ScoreRepository;
 import com.scoreboard.BoardAPI.Service.ScoreService;
-import com.scoreboard.BoardAPI.Service.ScoreServiceImpl;
-
-import ch.qos.logback.core.status.Status;
 
 
 

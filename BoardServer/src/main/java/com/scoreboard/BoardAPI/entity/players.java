@@ -13,7 +13,7 @@ public class players {
 	private int player_id;
 	private String player_name;
 	
-	public players() {
+	public players() { 
 		
 	}
 	public int getPlayer_id() {

@@ -131,7 +131,7 @@ public class ScoreServiceImpl implements ScoreService {
 	}
 
 	@Override
-	public boolean isout(long id) {
+	public boolean isout(int id) {
 		Score score = scorerepository.findById(id).get();
 		if(score.getStatus().equals("out"))
 			return true;

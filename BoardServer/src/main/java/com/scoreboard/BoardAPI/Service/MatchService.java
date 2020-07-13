@@ -12,6 +12,10 @@ public interface MatchService {
 
 	public List<matchs> getall();
 
+	public matchs getbyid(int id);
+
+	
+
 	
 
 }

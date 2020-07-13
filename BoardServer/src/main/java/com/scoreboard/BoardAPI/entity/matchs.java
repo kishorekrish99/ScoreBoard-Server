@@ -21,14 +21,12 @@ public class matchs {
 	@Id
 	@GeneratedValue
 	private int match_id;
-	private int admin_id;
-	private int toss;
-	private Boolean isActive;
+	private String toss;
 	private int overs;
 	 @OneToMany(targetEntity = team.class,cascade = CascadeType.ALL)
 	 @JoinColumn(name ="mt_fk",referencedColumnName = "match_id")
 	private List<team> team;
-	public matchs() {
+	public matchs() { 
 		
 	}
 	public int getMatch_id() {
@@ -37,23 +35,11 @@ public class matchs {
 	public void setMatch_id(int match_id) {
 		this.match_id = match_id;
 	}
-	public int getAdmin_id() {
-		return admin_id;
-	}
-	public void setAdmin_id(int admin_id) {
-		this.admin_id = admin_id;
-	}
-	public int getToss() {
+	public String getToss() {
 		return toss;
 	}
-	public void setToss(int toss) {
+	public void setToss(String toss) {
 		this.toss = toss;
-	}
-	public Boolean getIsActive() {
-		return isActive;
-	}
-	public void setIsActive(Boolean isActive) {
-		this.isActive = isActive;
 	}
 	public int getOvers() {
 		return overs;
@@ -69,17 +55,13 @@ public class matchs {
 	}
 	@Override
 	public String toString() {
-		return "matchs [match_id=" + match_id + ", admin_id=" + admin_id + ", toss=" + toss + ", isActive=" + isActive
-				+ ", overs=" + overs + ", team=" + team + "]";
+		return "matchs [match_id=" + match_id + ", toss=" + toss + ", overs=" + overs + ", team=" + team + "]";
 	}
-	public matchs(int admin_id, int toss, Boolean isActive, int overs, List<com.scoreboard.BoardAPI.entity.team> team) {
+	public matchs(String toss, int overs, List<com.scoreboard.BoardAPI.entity.team> team) {
 		super();
-		this.admin_id = admin_id;
 		this.toss = toss;
-		this.isActive = isActive;
 		this.overs = overs;
 		this.team = team;
 	}
-	
 	
 }

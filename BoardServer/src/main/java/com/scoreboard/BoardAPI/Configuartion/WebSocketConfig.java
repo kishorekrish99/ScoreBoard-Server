@@ -20,10 +20,10 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
  		
  	}
 	    
-	    @Override
+	    @Override 
 	    public void registerStompEndpoints(StompEndpointRegistry registry) {
 	    	
-	    	registry.addEndpoint("/livescore-websocket").setAllowedOrigins("http://localhost:4200","http://localhost:5000").withSockJS();
+	    	registry.addEndpoint("/livescore-websocket").setAllowedOrigins("http://localhost:4200").withSockJS();
 	    	
 	    }
 	    

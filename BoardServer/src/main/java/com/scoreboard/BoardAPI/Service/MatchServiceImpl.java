@@ -1,6 +1,7 @@
 package com.scoreboard.BoardAPI.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -23,8 +24,24 @@ public class MatchServiceImpl implements MatchService {
 	}
 
 	@Override
+	@Transactional
 	public List<matchs> getall() {
 		
 		return matchsrepository.findAll();
+	}
+
+	@Override
+	@Transactional
+	public matchs getbyid(int id) {
+		
+		Optional<matchs> result = matchsrepository.findById(id);
+		matchs matchs=null;
+		if(result.isPresent()) {
+			matchs=result.get();
+		}else {
+			throw new RuntimeException("Employee id not foundd "+id);
+		}	
+		return matchs;
 	}	
 }
+ 
