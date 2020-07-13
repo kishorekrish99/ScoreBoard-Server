@@ -15,7 +15,8 @@ import com.scoreboard.BoardAPI.dto.MatchesToTeams;
 import com.scoreboard.BoardAPI.entity.matchs;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:4200"})
+
+@CrossOrigin(origins="http://localhost:4200")
 public class MatchController {
 		
 	@Autowired

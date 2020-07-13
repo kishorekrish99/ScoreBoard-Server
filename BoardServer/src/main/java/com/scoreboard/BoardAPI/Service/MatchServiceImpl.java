@@ -14,6 +14,8 @@ import com.scoreboard.BoardAPI.entity.matchs;
 
 @Service
 public class MatchServiceImpl implements MatchService {
+	
+	
 	@Autowired
 	private matchsRepository matchsrepository;
 
